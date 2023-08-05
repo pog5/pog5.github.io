@@ -1,5 +1,0 @@
-﻿{
-  "Description": "Domain ownership verification file for Microsoft 365 - place in the website root",
-  "Domain": "pog5.me",
-  "Id": "df3a9d74-c668-4e0e-afa1-02b3f1c9a2e8"
-}
