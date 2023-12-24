@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <title>Pixel's Website</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Website containing information about me such as what experience I have and what technologies I've used!">
-    <meta property="og:title" content="pog5.me: Yet Another Dev">
-    <meta name="twitter:title" content="pog5.me: Yet Another Dev">
+    <meta name="description" content="the best website ever (trust me bro)">
+    <meta property="og:title" content="pog5.me">
+    <meta name="twitter:title" content="pog5.me">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://pog5.me/">
     <style>
@@ -203,9 +203,27 @@
     </header>
     <main>
         <h2>Soon...</h2>
+        <hr>
+        <h3>GPT prompt:</h3>
+        <textarea id="gptprompt"></textarea><br>
+        <button>Ask away</button>
+        <div id="output"></div>
+        <script>
+            const input = document.querySelector("#gptprompt");
+            const output = document.querySelector("#output");
+            document.querySelector("button").addEventListener('click', () => {
+                output.textContent = "Loading..."
+                fetch("https://gpt.pog5.me/?jailbreak=1&prompt=" + input.value)
+                .then(x => x.text()).then(c => {
+                    c = c.replace(/\n/g, '<br>')
+                    output.innerHTML = c;
+                })
+            })
+        </script>
     </main>
     <footer>
-        <p><i>Bandwith is money, don't waste it on JS libraries.</i></p>
+        <hr>
+        <p><i>An idiot admires complexity, a genius admires simplicity.<br> - Terry Davis</i></p>
     </footer>
     </div>
 </body>
