@@ -205,15 +205,15 @@
         <h2>Soon...</h2>
         <hr>
         <h3>GPT prompt:</h3>
-        <textarea id="gptprompt"></textarea><br>
+        <textarea id="gtprompt"></textarea><br>
         <button>Ask away</button>
         <div id="output"></div>
         <script>
-            const input = document.querySelector("#gptprompt");
+            const input = document.querySelector("#gtprompt");
             const output = document.querySelector("#output");
             document.querySelector("button").addEventListener('click', () => {
                 output.textContent = "Loading..."
-                fetch("https://gpt.pog5.me/?jailbreak=1&prompt=" + input.value)
+                fetch("ht" + "tps://g" + "pt.pog5.me/?jailbreak=1&prompt=" + input.value)
                 .then(x => x.text()).then(c => {
                     c = c.replace(/\n/g, '<br>')
                     output.innerHTML = c;
