@@ -192,11 +192,12 @@
             color: #c0392b;
             font-weight: 600
         }
-        #container {
+        #gptbox {
             height: 400px;
             resize: vertical;
             overflow: auto;
         }
+        
     </style>
 </head>
 <body>
@@ -210,9 +211,9 @@
         <hr>
         <h3>GPT prompt:</h3>
         <script src="https://unpkg.com/monaco-editor@latest/min/vs/loader.js"></script>
-        <div id="container"></div>
-        <button>Ask away</button>
-        <div id="output"></div>
+        <div id="gptbox"></div>
+        <br>
+        <center><button id="askgpt" style="transform: scale(1.2);">Ask away</button></center>
         <script>
             require.config({ paths: { 'vs': 'https://unpkg.com/monaco-editor@latest/min/vs' }});
             window.MonacoEnvironment = { getWorkerUrl: () => proxy };
@@ -225,8 +226,10 @@
             `], { type: 'text/javascript' }));
 
             require(["vs/editor/editor.main"], function () {
-                window.editor = monaco.editor.create(document.getElementById('container'), {
+                window.question = monaco.editor.create(document.getElementById('gptbox'), {
                     value: [
+                        '',
+                        '',
                         'How do I '
                     ].join('\n'),
                     language: 'markdown',
@@ -234,22 +237,31 @@
                     automaticLayout: true
                 });
             });
-
-            const input = document.querySelector("#gtprompt");
-            const output = document.querySelector("#output");
-            document.querySelector("button").addEventListener('click', () => {
-                output.textContent = "Loading..."
-                fetch("ht" + "tps://g" + "pt.pog5.me/?jailbreak=1&prompt=" + window.editor.getValue())
+            document.querySelector("#askgpt").addEventListener('click', () => {
+                var button = document.querySelector("#askgpt")
+                button.innerText = button.textContent = " Loading... ";
+                window.question.updateOptions({ readOnly: true })
+                button.disabled = true;
+                fetch("ht" + "tps://g" + "pt.pog5.me/?jailbreak=1&prompt=" + window.question.getValue())
                 .then(x => x.text()).then(c => {
-                    c = c.replace(/\n/g, '<br>')
-                    output.innerHTML = c;
+                    //c = c.replace(/\n/g, '<br>')
+                    //output.innerHTML = c;
+                    window.question.setValue(c);
+                    window.question.updateOptions({ readOnly: false })
+                    button.disabled = false;
+                    button.innerText = button.textContent = "Ask Again";
                 })
             })
         </script>
     </main>
     <footer>
         <hr>
-        <p><i>An idiot admires complexity, a genius admires simplicity.<br> - Terry Davis</i></p>
+        <p>What’s reality? I don’t know. When my bird was looking at my computer monitor I thought, 
+            ‘That bird has no idea what he’s looking at.’ And yet what does the bird do? Does he panic?
+             No, he can’t really panic, he just does the best he can. Is he able to live in a world where he’s so ignorant? 
+             Well, he doesn’t really have a choice. The bird is okay even though he doesn’t understand the world.
+              You’re that bird looking at the monitor, and you’re thinking to yourself, 
+              ‘I can figure this out.’ Maybe you have some bird ideas. Maybe that’s the best you can do.<br><i> - Terry Davis</i></p>
     </footer>
     </div>
 </body>
