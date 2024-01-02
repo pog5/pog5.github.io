@@ -192,7 +192,11 @@
             color: #c0392b;
             font-weight: 600
         }
-
+        #container {
+            height: 400px;
+            resize: vertical;
+            overflow: auto;
+        }
     </style>
 </head>
 <body>
@@ -205,15 +209,37 @@
         <h2>Soon...</h2>
         <hr>
         <h3>GPT prompt:</h3>
-        <textarea id="gtprompt"></textarea><br>
+        <script src="https://unpkg.com/monaco-editor@latest/min/vs/loader.js"></script>
+        <div id="container"></div>
         <button>Ask away</button>
         <div id="output"></div>
         <script>
+            require.config({ paths: { 'vs': 'https://unpkg.com/monaco-editor@latest/min/vs' }});
+            window.MonacoEnvironment = { getWorkerUrl: () => proxy };
+
+            let proxy = URL.createObjectURL(new Blob([`
+                self.MonacoEnvironment = {
+                    baseUrl: 'https://unpkg.com/monaco-editor@latest/min/'
+                };
+                importScripts('https://unpkg.com/monaco-editor@latest/min/vs/base/worker/workerMain.js');
+            `], { type: 'text/javascript' }));
+
+            require(["vs/editor/editor.main"], function () {
+                window.editor = monaco.editor.create(document.getElementById('container'), {
+                    value: [
+                        'How do I '
+                    ].join('\n'),
+                    language: 'markdown',
+                    theme: 'vs-dark',
+                    automaticLayout: true
+                });
+            });
+
             const input = document.querySelector("#gtprompt");
             const output = document.querySelector("#output");
             document.querySelector("button").addEventListener('click', () => {
                 output.textContent = "Loading..."
-                fetch("ht" + "tps://g" + "pt.pog5.me/?jailbreak=1&prompt=" + input.value)
+                fetch("ht" + "tps://g" + "pt.pog5.me/?jailbreak=1&prompt=" + window.editor.getValue())
                 .then(x => x.text()).then(c => {
                     c = c.replace(/\n/g, '<br>')
                     output.innerHTML = c;
