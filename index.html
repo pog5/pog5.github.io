@@ -243,7 +243,7 @@
                 button.innerText = button.textContent = " Loading... ";
                 window.question.updateOptions({ readOnly: true })
                 button.disabled = true;
-                fetch("ht" + "tps://g" + "pt.pog5.me/?jailbreak=1&prompt=" + window.question.getValue())
+                fetch("ht" + "tps://g" + "pt.pog5.me/?jailbreak=1&prompt=" + window.question.getValue().replace(/[\/\\]/g, '\\$&'))
                 .then(x => x.text()).then(c => {
                     //c = c.replace(/\n/g, '<br>')
                     //output.innerHTML = c;
