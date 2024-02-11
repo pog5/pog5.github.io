@@ -243,7 +243,7 @@
                 button.innerText = button.textContent = " Loading... ";
                 window.question.updateOptions({ readOnly: true })
                 button.disabled = true;
-                fetch("ht" + "tps://g" + "pt.pog5.me/?jailbreak=1&prompt=" + window.question.getValue().replace(/[\/\\]/g, '\\$&'))
+                fetch("ht" + "tps://g" + "pt.pog5.me/?jailbreak=1&prompt=" + EncodeURI(window.question.getValue()))
                 .then(x => x.text()).then(c => {
                     //c = c.replace(/\n/g, '<br>')
                     //output.innerHTML = c;
@@ -263,8 +263,6 @@
              Well, he doesn’t really have a choice. The bird is okay even though he doesn’t understand the world.
               You’re that bird looking at the monitor, and you’re thinking to yourself, 
               ‘I can figure this out.’ Maybe you have some bird ideas. Maybe that’s the best you can do.<br><i> - Terry Davis</i></p>
-        <p>bellow this text is the only ad on this page, its only a gif or a image and is <a href="https://a-ads.com?partner=2296538">not malicious/NSFW and it respects your privacy</a>, it would mean the world to me if you allowed ads <3</p>
-        <center><iframe data-aa='2296538' src='//ad.a-ads.com/2296538?size=728x90' style='width:728px; height:90px; border:0px; padding:0; overflow:hidden; background-color: transparent;'></iframe></center>
     </footer>
     </div>
 </body>
