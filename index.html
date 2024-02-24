@@ -192,12 +192,6 @@
             color: #c0392b;
             font-weight: 600
         }
-        #gptbox {
-            height: 400px;
-            resize: vertical;
-            overflow: auto;
-        }
-        
     </style>
 </head>
 <body>
@@ -210,48 +204,16 @@
         <h2>Soon...</h2>
         <hr>
         <h3>GPT prompt:</h3>
-        <script src="https://unpkg.com/monaco-editor@latest/min/vs/loader.js"></script>
-        <div id="gptbox"></div>
-        <br>
-        <center><button id="askgpt" style="transform: scale(1.2);">Ask away</button></center>
+        <textarea id="gtprompt"></textarea><br>
+        <button>Ask away</button>
+        <div id="output"></div>
         <script>
-            require.config({ paths: { 'vs': 'https://unpkg.com/monaco-editor@latest/min/vs' }});
-            window.MonacoEnvironment = { getWorkerUrl: () => proxy };
-
-            let proxy = URL.createObjectURL(new Blob([`
-                self.MonacoEnvironment = {
-                    baseUrl: 'https://unpkg.com/monaco-editor@latest/min/'
-                };
-                importScripts('https://unpkg.com/monaco-editor@latest/min/vs/base/worker/workerMain.js');
-            `], { type: 'text/javascript' }));
-
-            require(["vs/editor/editor.main"], function () {
-                window.question = monaco.editor.create(document.getElementById('gptbox'), {
-                    value: [
-                        '',
-                        '',
-                        'How do I '
-                    ].join('\n'),
-                    language: 'markdown',
-                    theme: 'vs-dark',
-                    automaticLayout: true,
-                    wordWrap: "on"
-                });
-            });
-            document.querySelector("#askgpt").addEventListener('click', () => {
-                var button = document.querySelector("#askgpt")
-                button.innerText = button.textContent = " Loading... ";
-                window.question.updateOptions({ readOnly: true })
-                button.disabled = true;
-                fetch("ht" + "tps://g" + "pt.pog5.me/?jailbreak=1&prompt=" + encodeURIComponent(window.question.getValue()))
-                .then(x => x.text()).then(c => {
-                    //c = c.replace(/\n/g, '<br>')
-                    //output.innerHTML = c;
-                    window.question.setValue(c);
-                    window.question.updateOptions({ readOnly: false })
-                    button.disabled = false;
-                    button.innerText = button.textContent = "Ask Again";
-                })
+            const input = document.querySelector("#gtprompt");
+            const output = document.querySelector("#output");
+            document.querySelector("button").addEventListener('click', () => {
+                output.textContent = "Loading..."
+                fetch("https://g" + "pt.pog5.me/?jailbreak=1&prompt=" + input.value)
+                .then(x => x.text()).then(c => output.innerHTML = c.replace(/\n/g, '<br>'))
             })
         </script>
     </main>
