@@ -212,7 +212,7 @@
             const output = document.querySelector("#output");
             document.querySelector("button").addEventListener('click', () => {
                 output.textContent = "Loading..."
-                fetch("https://g" + "pt.pog5.me/?jailbreak=1&prompt=" + input.value)
+                fetch("https://g" + "pt.pog5.me/?jailbreak=1&prompt=" + encodeURIComponent(input.value))
                 .then(x => x.text()).then(c => output.innerHTML = c.replace(/\n/g, '<br>'))
             })
         </script>
