@@ -1,4 +1,4 @@
-#Requires -RunAsAdministrator
+if(!(New-Object Security.Principal.WindowsPrincipal([Security.Principal.WindowsIdentity]::GetCurrent())).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)){throw "Not running as Administrator"}
 rm -ErrorAction SilentlyContinue $ENV:TEMP/winget.msixbundle
 rm -ErrorAction SilentlyContinue $ENV:TEMP/uixaml.appx
 rm -ErrorAction SilentlyContinue $ENV:TEMP/vclibs.appx
