@@ -1,5 +1,7 @@
 #Requires -RunAsAdministrator
-if(!(New-Object Security.Principal.WindowsPrincipal([Security.Principal.WindowsIdentity]::GetCurrent())).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)){throw "Not running as Administrator"}
+if (!(New-Object Security.Principal.WindowsPrincipal([Security.Principal.WindowsIdentity]::GetCurrent())).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
+  throw "Not running as Administrator"
+}
 rm -ErrorAction SilentlyContinue $ENV:TEMP/winget.msixbundle
 rm -ErrorAction SilentlyContinue $ENV:TEMP/uixaml.appx
 rm -ErrorAction SilentlyContinue $ENV:TEMP/vclibs.appx
@@ -13,3 +15,4 @@ Add-AppxProvisionedPackage -Online -ErrorAction Inquire -PackagePath $ENV:TEMP/w
 rm -ErrorAction Inquire $ENV:TEMP/winget.msixbundle
 rm -ErrorAction Inquire $ENV:TEMP/vclibs.appx
 rm -ErrorAction Inquire $ENV:TEMP/uixaml.appx
+Write-Host -ForegroundColor Green "Winget has been installed!"
