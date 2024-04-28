@@ -1,0 +1,54 @@
+# Make sure we are running as Admin
+# In case we are saved as a file, give a more detailed (and proper) error
+#Requires -RunAsAdministrator
+# Otherwise do the legacy method
+if (!(New-Object Security.Principal.WindowsPrincipal([Security.Principal.WindowsIdentity]::GetCurrent())).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
+  throw "Not running as Administrator"
+}
+# Invoke-WebRequest and Net.WebClient get really slow when drawing progress bars for some reason, weird
+$progressPreference = 'SilentlyContinue'
+# Useful if we can send our own debug messages though
+$DebugPreference = 'Continue'
+
+# Generate ourselves a custom dir in %TEMP%
+$folderPath = New-TemporaryFile | ForEach-Object { 
+    Remove-Item $_ -Force
+    $folderPath = New-Item -ItemType Directory $_ -Force 
+    $folderPath # this returns the path
+} -OutVariable folderPath
+Write-Debug "Temp folder: $folderPath"
+
+# Faster than iwr (invoke-webrequest)
+$wc = New-Object net.webclient
+
+# Might add auto updates in the future
+$urls = @(
+    "https://github.com/microsoft/winget-cli/releases/download/v1.7.11132/ccfd1d114c9641fc8491f3c7c179829e_License1.xml",
+    "https://github.com/microsoft/microsoft-ui-xaml/releases/download/v2.8.6/Microsoft.UI.Xaml.2.8.x64.appx",
+    "https://aka.ms/Microsoft.VCLibs.x64.14.00.Desktop.appx",
+    "https://github.com/microsoft/winget-cli/releases/download/v1.7.11132/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle"
+)
+$destinations = @(
+    "$folderPath/license.xml",
+    "$folderPath/uixaml.appx",
+    "$folderPath/vclibs.appx",
+    "$folderPath/winget.msixbundle"
+)
+
+for ($i = 0; $i -lt $urls.Count; $i++) {
+    Write-Debug "Downloading $urls[$i]"
+    $wc.Downloadfile($urls[$i],$destinations[$i])
+}
+
+Write-Debug "Installing..."
+# Only Add-AppxProvisionedPackage lets us specify a License
+# winget gets grumpy when we dont specify one
+Add-AppxProvisionedPackage -Online -PackagePath $folderPath/winget.msixbundle
+  -DependencyPackagePath $folderPath/uixaml.appx,$folderPath/vclibs.appx `
+  -LicensePath $folderPath/license.xml
+
+Write-Debug "Done!"
+
+Write-Debug "Cleaning up temporary folder..."
+# Cleanup
+Remove-Item -Recurse $folderPath
