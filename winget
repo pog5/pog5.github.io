@@ -45,7 +45,7 @@ Write-Debug "Installing..."
 # winget gets grumpy when we dont specify one
 Add-AppxProvisionedPackage -Online -PackagePath $folderPath/winget.msixbundle `
   -DependencyPackagePath $folderPath/uixaml.appx,$folderPath/vclibs.appx `
-  -LicensePath $folderPath/license.xml
+  -LicensePath $folderPath/license.xml | Out-Null
 
 Write-Debug "Done!"
 
