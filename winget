@@ -36,7 +36,7 @@ $destinations = @(
 )
 
 for ($i = 0; $i -lt $urls.Count; $i++) {
-    Write-Debug "Downloading " + $urls[$i]
+    Write-Debug("Downloading " + $urls[$i])
     $wc.Downloadfile($urls[$i],$destinations[$i])
 }
 
