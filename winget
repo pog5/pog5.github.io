@@ -1,0 +1,4 @@
+rm $ENV:TEMP/winget.msixbundle
+iwr https://aka.ms/getwinget -OutFile $ENV:TEMP/winget.msixbundle
+Add-AppxPackage $ENV:TEMP/winget.msixbundle
+rm $ENV:TEMP/winget.msixbundle
