@@ -2,12 +2,13 @@ if(!(New-Object Security.Principal.WindowsPrincipal([Security.Principal.WindowsI
 rm -ErrorAction SilentlyContinue $ENV:TEMP/winget.msixbundle
 rm -ErrorAction SilentlyContinue $ENV:TEMP/uixaml.appx
 rm -ErrorAction SilentlyContinue $ENV:TEMP/vclibs.appx
+iwr -ErrorAction Inquire -UseBasicParsing https://github.com/microsoft/winget-cli/releases/download/v1.7.11132/ccfd1d114c9641fc8491f3c7c179829e_License1.xml -OutFile $ENV:TEMP/license.xml
 iwr -ErrorAction Inquire -UseBasicParsing https://github.com/microsoft/microsoft-ui-xaml/releases/download/v2.8.6/Microsoft.UI.Xaml.2.8.x64.appx -OutFile $ENV:TEMP/uixaml.appx
 iwr -ErrorAction Inquire -UseBasicParsing https://aka.ms/Microsoft.VCLibs.x64.14.00.Desktop.appx -OutFile $ENV:TEMP/vclibs.appx
 iwr -ErrorAction Inquire -UseBasicParsing https://aka.ms/getwinget -OutFile $ENV:TEMP/winget.msixbundle
 Add-AppxPackage -ErrorAction Inquire $ENV:TEMP/uixaml.appx
 Add-AppxPackage -ErrorAction Inquire $ENV:TEMP/vclibs.appx
-Add-AppxPackage -ErrorAction Inquire $ENV:TEMP/winget.msixbundle
+Add-AppxProvisionedPackage -Online -ErrorAction Inquire -PackagePath $ENV:TEMP/winget.msixbundle -LicensePath $ENV:TEMP/license.xml
 rm -ErrorAction Inquire $ENV:TEMP/winget.msixbundle
 rm -ErrorAction Inquire $ENV:TEMP/vclibs.appx
 rm -ErrorAction Inquire $ENV:TEMP/uixaml.appx
