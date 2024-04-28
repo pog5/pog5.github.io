@@ -8,7 +8,7 @@ if (!(New-Object Security.Principal.WindowsPrincipal([Security.Principal.Windows
 # Invoke-WebRequest and Net.WebClient get really slow when drawing progress bars for some reason, weird
 $progressPreference = 'SilentlyContinue'
 # Useful if we can send our own debug messages though
-$DebugPreference = 'Continue'
+#$DebugPreference = 'Continue'
 
 # Generate ourselves a custom dir in %TEMP%
 $folderPath = New-TemporaryFile | ForEach-Object { 
