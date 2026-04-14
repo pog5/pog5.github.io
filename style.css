@@ -7,15 +7,24 @@
   padding: 0;
 }
 
-html, body {
+html {
   height: 100%;
-  overflow: hidden;
+}
+
+body {
+  min-height: 100%;
+  overflow-y: auto;
   font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-tap-highlight-color: transparent;
   color: #fff;
   background: #000;
+}
+
+/* ===== Toggle (checkbox hack) ===== */
+.more-toggle {
+  display: none;
 }
 
 /* ===== Background Layers ===== */
@@ -50,21 +59,23 @@ html, body {
   position: relative;
   z-index: 10;
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
-  height: 100%;
+  gap: 0;
+  min-height: 100vh;
   width: 100%;
-  padding: 1.5rem;
+  padding: 2rem 1.5rem;
+  transition: gap .4s cubic-bezier(.16, 1, .3, 1);
 }
 
-/* ===== Card ===== */
+/* ===== Card (shared) ===== */
 .card {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1.75rem;
   padding: 2.5rem 3rem;
-  border-radius: 0;
   border: 1px solid rgb(255 255 255 / .08);
   background: rgb(255 255 255 / .04);
   backdrop-filter: blur(12px);
@@ -72,9 +83,90 @@ html, body {
   box-shadow:
     0 0 0 1px rgb(255 255 255 / .04),
     0 8px 40px rgb(0 0 0 / .4);
+  width: 100%;
+}
+
+.cards-left {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
   max-width: 420px;
   width: 100%;
+}
+
+.card-left {
   animation: card-enter .6s cubic-bezier(.16, 1, .3, 1) both;
+}
+
+.card-about {
+  display: none;
+  align-items: flex-start;
+  gap: 1rem;
+  animation: card-enter .5s .1s cubic-bezier(.16, 1, .3, 1) both;
+}
+
+.more-toggle:checked ~ .content .card-about {
+  display: flex;
+}
+
+.about-heading {
+  font-size: .65rem;
+  font-weight: 400;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: rgb(255 255 255 / .3);
+  width: 100%;
+}
+
+.about-text {
+  font-size: .92rem;
+  font-weight: 300;
+  color: rgb(255 255 255 / .72);
+  line-height: 1.7;
+  letter-spacing: .01em;
+}
+
+.card-right {
+  display: none;
+  max-width: 720px;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.card-columns {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  width: 100%;
+  align-items: flex-start;
+}
+
+.card-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  min-width: 0;
+}
+
+/* Show right card when toggled */
+.more-toggle:checked ~ .content {
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.more-toggle:checked ~ .content .card-right {
+  display: flex;
+  animation: card-enter .45s cubic-bezier(.16, 1, .3, 1) both;
+}
+
+/* Rotate arrow when open */
+.more-toggle:checked ~ .content .cta-arrow {
+  transform: rotate(90deg);
+}
+
+.more-toggle:checked ~ .content .cta-btn:hover .cta-arrow {
+  transform: rotate(90deg);
 }
 
 @keyframes card-enter {
@@ -92,11 +184,10 @@ html, body {
   width: 100%;
 }
 
-/* ===== Avatar (squircle via CSS) ===== */
+/* ===== Avatar ===== */
 .avatar {
   width: 7rem;
   height: 7rem;
-  border-radius: 0;
   object-fit: cover;
   flex-shrink: 0;
   box-shadow: 0 0 20px rgb(255 255 255 / .12);
@@ -196,6 +287,155 @@ html, body {
 
 .cta-btn:hover .cta-arrow {
   transform: translateX(4px);
+}
+
+/* ===== Skill Groups ===== */
+.skill-groups {
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+  width: 100%;
+}
+
+.skill-group {
+  display: flex;
+  align-items: flex-start;
+  gap: .75rem;
+}
+
+.skill-label {
+  font-size: .65rem;
+  font-weight: 400;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: rgb(255 255 255 / .25);
+  white-space: nowrap;
+  padding-top: .22rem;
+  min-width: 4.5rem;
+}
+
+/* ===== Pills ===== */
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .375rem;
+}
+
+.pill {
+  font-size: .7rem;
+  font-weight: 400;
+  letter-spacing: .06em;
+  color: rgb(255 255 255 / .55);
+  border: 1px solid rgb(255 255 255 / .1);
+  border-radius: .25rem;
+  padding: .2rem .55rem;
+}
+
+/* ===== Section Headings ===== */
+.section-heading {
+  font-size: .65rem;
+  font-weight: 400;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: rgb(255 255 255 / .3);
+  margin-bottom: .75rem;
+}
+
+/* ===== Entry List ===== */
+.entry-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.entry {
+  padding: .75rem 0 .75rem .875rem;
+  border-left: 1px solid rgb(255 255 255 / .08);
+  position: relative;
+}
+
+.entry::before {
+  content: "";
+  position: absolute;
+  left: -3px;
+  top: 1.05rem;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgb(255 255 255 / .2);
+}
+
+.entry-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: .5rem;
+  flex-wrap: wrap;
+}
+
+.entry-name {
+  font-size: .875rem;
+  font-weight: 400;
+  color: rgb(255 255 255 / .85);
+}
+
+.entry-period {
+  font-size: .7rem;
+  color: rgb(255 255 255 / .3);
+  letter-spacing: .03em;
+  white-space: nowrap;
+}
+
+.entry-role {
+  font-size: .75rem;
+  color: rgb(255 255 255 / .45);
+  margin-top: .15rem;
+  letter-spacing: .02em;
+}
+
+.entry-desc {
+  font-size: .78rem;
+  color: rgb(255 255 255 / .4);
+  margin-top: .3rem;
+  line-height: 1.5;
+}
+
+/* ===== Project entries ===== */
+.project-entry a {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: .5rem;
+  text-decoration: none;
+  flex-wrap: wrap;
+}
+
+.project-entry a:hover .entry-name {
+  color: #fff;
+}
+
+.entry-stat {
+  font-size: .7rem;
+  color: rgb(255 255 255 / .28);
+  letter-spacing: .03em;
+  white-space: nowrap;
+}
+
+/* ===== View All Link ===== */
+.view-all {
+  display: inline-flex;
+  align-items: center;
+  gap: .3rem;
+  margin-top: .75rem;
+  font-size: .75rem;
+  color: rgb(255 255 255 / .35);
+  text-decoration: none;
+  letter-spacing: .04em;
+  transition: color .2s ease;
+}
+
+.view-all:hover {
+  color: rgb(255 255 255 / .7);
 }
 
 /* ===== Media Controls ===== */
@@ -327,7 +567,24 @@ html, body {
   display: block;
 }
 
-/* ===== Mobile ===== */
+/* ===== Responsive ===== */
+@media (max-width: 1100px) {
+  .more-toggle:checked ~ .content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card-right {
+    max-width: 600px;
+  }
+}
+
+@media (max-width: 640px) {
+  .card-columns {
+    flex-direction: column;
+  }
+}
+
 @media (max-width: 480px) {
   .card {
     padding: 1.75rem 1.5rem;

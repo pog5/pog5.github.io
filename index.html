@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>pog5</title>
+  <title>pog5 — Developer & Reverse Engineer</title>
+  <meta name="description" content="pog5 — Developer and Reverse Engineer. Minecraft plugin dev, Fabric mod author, open source contributor.">
+  <meta name="theme-color" content="#0a0a0a">
 
   <!-- OpenGraph -->
   <meta property="og:type" content="website">
@@ -25,6 +27,8 @@
 </head>
 <body>
 
+  <input type="checkbox" id="more-toggle" class="more-toggle">
+
   <video id="bg-video" class="bg-video" autoplay loop muted playsinline>
     <source src="https://assets.nightly.eu.org/websiteassets/bg.mp4" type="video/mp4">
   </video>
@@ -33,7 +37,8 @@
   <div class="bg-glow"></div>
 
   <main class="content">
-    <div class="card">
+    <div class="cards-left">
+    <div class="card card-left">
       <div class="card-header">
         <img
           src="assets/profile.webp"
@@ -54,16 +59,194 @@
             <a href="https://github.com/pog5" target="_blank" rel="noopener" class="social-btn" aria-label="GitHub">
               <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
             </a>
+            <a href="https://modrinth.com/user/nightly" target="_blank" rel="noopener" class="social-btn" aria-label="Modrinth">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12.006 0a12 12 0 0 0-9.69 19.087l2.063-1.489A9.484 9.484 0 0 1 2.54 12.01a9.47 9.47 0 0 1 9.47-9.47 9.47 9.47 0 0 1 9.468 9.47 9.47 9.47 0 0 1-.758 3.726h2.588A11.944 11.944 0 0 0 24 12.01 12 12 0 0 0 12.006 0zm5.747 17.174a5.4 5.4 0 0 1-3.615 2.033v2.56a7.955 7.955 0 0 0 5.848-3.313zm-9.74-.172-2.086 1.506A7.962 7.962 0 0 0 9.57 21.74v-2.562a5.417 5.417 0 0 1-1.557-2.776zm4.38 2.34a5.415 5.415 0 0 1-1.388-.008v2.554c.46.054.924.082 1.388.079z"/></svg>
+            </a>
           </div>
         </div>
       </div>
 
       <p class="tagline">Developer &mdash; Reverse Engineer</p>
 
-      <a href="#" class="cta-btn">
+      <label for="more-toggle" class="cta-btn">
         See More
         <svg class="cta-arrow" viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path fill-rule="evenodd" d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10z" clip-rule="evenodd"/></svg>
-      </a>
+      </label>
+    </div>
+
+    <div class="card card-about">
+      <h2 class="about-heading">About</h2>
+      <p class="about-text">Building in the Minecraft ecosystem since 2023 &mdash; plugins, mods, infra. If your server needs something custom, let&rsquo;s talk :p</p>
+      <p class="about-text">Available for commissions. Reach out on Discord or Telegram.</p>
+    </div>
+    </div>
+
+    <div class="card card-right">
+      <div class="skill-groups">
+        <div class="skill-group">
+          <span class="skill-label">Languages</span>
+          <div class="pills">
+            <span class="pill">Kotlin</span>
+            <span class="pill">Java</span>
+            <span class="pill">Go</span>
+            <span class="pill">Rust</span>
+            <span class="pill">C</span>
+            <span class="pill">C#</span>
+            <span class="pill">TypeScript / JS</span>
+            <span class="pill">Skript</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <span class="skill-label">Tools</span>
+          <div class="pills">
+            <span class="pill">IDA Pro</span>
+            <span class="pill">Ghidra</span>
+            <span class="pill">x64dbg</span>
+            <span class="pill">Wireshark</span>
+            <span class="pill">Pterodactyl</span>
+            <span class="pill">Grafana</span>
+            <span class="pill">Prometheus</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <span class="skill-label">Skills</span>
+          <div class="pills">
+            <span class="pill">React</span>
+            <span class="pill">Vue</span>
+            <span class="pill">Svelte</span>
+            <span class="pill">Plugin Development</span>
+            <span class="pill">Fabric Modding</span>
+            <span class="pill">Server Administration</span>
+            <span class="pill">Linux / BSD</span>
+            <span class="pill">Binary Analysis</span>
+            <span class="pill">Anticheat Development</span>
+            <span class="pill">Community Moderation</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-columns">
+      <div class="card-col">
+      <section>
+        <h2 class="section-heading">Work</h2>
+        <ul class="entry-list">
+          <li class="entry">
+            <div class="entry-top">
+              <span class="entry-name">Vultex</span>
+              <span class="entry-period">Feb 2026 &ndash; present</span>
+            </div>
+            <p class="entry-role">Plugin Developer</p>
+            <p class="entry-desc">Core plugin development, cross-server KB sync, and menu framework integration.</p>
+          </li>
+          <li class="entry">
+            <div class="entry-top">
+              <span class="entry-name">LeoneMC</span>
+              <span class="entry-period">Oct 2024 &ndash; present</span>
+            </div>
+            <p class="entry-role">Plugin Developer</p>
+            <p class="entry-desc">Plugin development for PvP gamemodes and economy systems. (NDA)</p>
+          </li>
+          <li class="entry">
+            <div class="entry-top">
+              <span class="entry-name">Zentha</span>
+              <span class="entry-period">Aug &ndash; Nov 2025</span>
+            </div>
+            <p class="entry-role">Plugin Developer</p>
+            <p class="entry-desc">Core plugin: punishment systems, kill streak tracking, war game mode.</p>
+          </li>
+          <li class="entry">
+            <div class="entry-top">
+              <span class="entry-name">Stray</span>
+              <span class="entry-period">Mar &ndash; Oct 2025</span>
+            </div>
+            <p class="entry-role">Plugin Developer &middot; Moderator</p>
+            <p class="entry-desc">UHC plugin development, community moderation, anticheat screensharing.</p>
+          </li>
+          <li class="entry">
+            <div class="entry-top">
+              <span class="entry-name">OG Vultex</span>
+              <span class="entry-period">Oct 2023 &ndash; Jan 2025</span>
+            </div>
+            <p class="entry-role">Plugin Developer</p>
+            <p class="entry-desc">Plugin development for an active Minecraft network.</p>
+          </li>
+        </ul>
+      </section>
+      </div>
+      <div class="card-col">
+      <section>
+        <h2 class="section-heading">Open Source</h2>
+        <ul class="entry-list">
+          <li class="entry project-entry">
+            <a href="https://modrinth.com/mod/leashable-players" target="_blank" rel="noopener">
+              <span class="entry-name">Leashable Players</span>
+              <span class="entry-stat">227k downloads</span>
+            </a>
+            <p class="entry-desc">Server-side Fabric mod &mdash; leash and drag other players.</p>
+          </li>
+          <li class="entry project-entry">
+            <a href="https://modrinth.com/mod/dupeme!" target="_blank" rel="noopener">
+              <span class="entry-name">DupeMe!</span>
+              <span class="entry-stat">51k downloads</span>
+            </a>
+            <p class="entry-desc">Fabric mod &mdash; give yourself a copy of the item in hand.</p>
+          </li>
+          <li class="entry project-entry">
+            <a href="https://modrinth.com/mod/anyscale" target="_blank" rel="noopener">
+              <span class="entry-name">Anyscale</span>
+              <span class="entry-stat">7.4k downloads</span>
+            </a>
+            <p class="entry-desc">Scale chat, TAB, scoreboard, inventories and hotbar to any fractional value.</p>
+          </li>
+          <li class="entry project-entry">
+            <a href="https://modrinth.com/mod/vpn-warner" target="_blank" rel="noopener">
+              <span class="entry-name">VPN Warner</span>
+              <span class="entry-stat">3.9k downloads</span>
+            </a>
+            <p class="entry-desc">Warns before joining a server while on a VPN to avoid anticheat bans.</p>
+          </li>
+          <li class="entry project-entry">
+            <a href="https://modrinth.com/organization/goobercorp" target="_blank" rel="noopener">
+              <span class="entry-name">Goobercorp Modding Industries</span>
+              <span class="entry-stat">org member</span>
+            </a>
+            <p class="entry-desc">PvP-focused Fabric modding collective.</p>
+          </li>
+        </ul>
+        <a href="https://modrinth.com/user/nightly" class="view-all" target="_blank" rel="noopener">
+          View all on Modrinth
+          <svg viewBox="0 0 20 20" fill="currentColor" width="13" height="13"><path fill-rule="evenodd" d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10z" clip-rule="evenodd"/></svg>
+        </a>
+      </section>
+
+      <section>
+        <h2 class="section-heading">Projects</h2>
+        <ul class="entry-list">
+          <li class="entry project-entry">
+            <a href="https://github.com/pog5/FlatPractice" target="_blank" rel="noopener">
+              <span class="entry-name">FlatPractice</span>
+              <span class="entry-stat">GitHub</span>
+            </a>
+            <p class="entry-desc">PaperMC plugin &mdash; flat-world crystal PvP practice with /rtp.</p>
+          </li>
+          <li class="entry project-entry">
+            <a href="https://github.com/pog5/minecraft-freebsd" target="_blank" rel="noopener">
+              <span class="entry-name">minecraft-freebsd</span>
+              <span class="entry-stat">20 stars</span>
+            </a>
+            <p class="entry-desc">Guide for running Minecraft and Prism Launcher on FreeBSD.</p>
+          </li>
+          <li class="entry project-entry">
+            <a href="https://github.com/pog5/gobin" target="_blank" rel="noopener">
+              <span class="entry-name">gobin</span>
+              <span class="entry-stat">GitHub</span>
+            </a>
+            <p class="entry-desc">Single-file self-hosted pastebin written in Go.</p>
+          </li>
+        </ul>
+      </section>
+      </div>
+      </div>
     </div>
   </main>
 
